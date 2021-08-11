@@ -1,5 +1,8 @@
 import Foundation
 
+/// List of default plugins which will be injected into all MoyaProviders.
+public var defaultPlugins: [PluginType] = []
+
 /// Closure to be executed when a request has completed.
 public typealias Completion = (_ result: Result<Moya.Response, MoyaError>) -> Void
 
@@ -103,7 +106,7 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
         self.requestClosure = requestClosure
         self.stubClosure = stubClosure
         self.session = session
-        self.plugins = plugins
+        self.plugins = plugins + defaultPlugins
         self.trackInflights = trackInflights
         self.callbackQueue = callbackQueue
     }
